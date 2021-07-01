@@ -18,8 +18,16 @@ public class Programa {
 			usuario2 = new Usuario();
 			usuario3 = new Usuario();
 			sala1 = new Sala();
+			
 			metodoFibonacci.generarSerieFibonacci();
 			
+			String nombreString = "German";
+			String apellidoString = "Rojas";
+			int edad = 30;
+			
+		
+			/*retorno = metodoFibonacci.metodoEjemplo(nombreString, apellidoString, edad);	
+			System.out.println("retorno del metodo"+retorno);*/
 						
 			leerDatos(usuario1);
 			leerDatos(usuario2);
@@ -33,23 +41,46 @@ public class Programa {
 		}
 		
 		private void leerDatos(Usuario u) {
+						
 			String pNombre;
 			String pRol; 
 			int pVoto = 0;
-							
+			boolean esSerie = true;
+			
+			
 			System.out.println(" \n Ingrese su nombre de usuario : ");
 			pNombre = teclado.next();
 			
 			System.out.println("Ingrese su Rol : ");
 			pRol = teclado.next();
 			
-			System.out.println("Ingrese su votacion: ");
-			pVoto = teclado.nextInt();
 			
+			do  {
+				esSerie = true;
+				System.out.println("Ingrese su votacion: ");
+				try {
+					pVoto = teclado.nextInt();	
+				} catch(Exception e) {
+					esSerie = false;
+					teclado.nextLine();
+				}
+				
+				if (esSerie==true)
+					esSerie = metodoFibonacci.validarVoto(pVoto);	
+				
+				if (esSerie==false) {
+					System.out.println("El numero no es valido Respuesta : "+ esSerie);
+				}			
+			} while (esSerie==false);
+			
+							
+			
+							
 			u.setNombre(pNombre);
 			u.setRol(pRol);
 			u.setVoto(pVoto);
 		}
+		
 		
 		
 }
